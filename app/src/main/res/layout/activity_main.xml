@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/sample_text"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:padding="33dp"
+        android:background="@color/colorPrimary"
+        android:text="Hello World!add" />
+
+    <TextView
+        android:id="@+id/sample_text1"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:padding="33dp"
+        android:background="@color/colorPrimary"
+        android:text="Hello World!sayHello" />
+
+    <TextView
+        android:id="@+id/sample_text2"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:padding="33dp"
+        android:background="@color/colorPrimary"
+        android:text="Hello World!increaseArrayEles" />
+
+    <TextView
+        android:id="@+id/sample_text3"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:padding="33dp"
+        android:background="@color/colorPrimary"
+        android:text="Hello World!checkPwd" />
+
+    <TextView
+        android:id="@+id/sample_text4"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:padding="33dp"
+        android:background="@color/colorPrimary"
+        android:text="下个页面C调java" />
+
+</LinearLayout>
