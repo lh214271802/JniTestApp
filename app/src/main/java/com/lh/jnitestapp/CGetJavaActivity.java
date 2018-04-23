@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 /**
  * @author liaohui
@@ -38,14 +37,24 @@ public class CGetJavaActivity extends AppCompatActivity implements View.OnClickL
      */
     public native void callBackHelloFromJava();
 
+
+    /**
+     * 执行这个方法的时候，让C代码调用静态方法
+     */
+    public native void callBackStaticSayHello();
+
+    public static void sayHello(String mesg) {
+        Log.e("sayHello", "C 调用了静态方法sayHello----》" + mesg);
+    }
+
     public int add(int x, int y) {
         Log.e("add", "C 调用了我-->" + (x + y));
-        Toast.makeText(this,"C 调用了我-->"+(x+y),Toast.LENGTH_SHORT).show();
+//        Toast.makeText(CGetJavaActivity.this,"C 调用了我-->"+(x+y),Toast.LENGTH_SHORT).show();
         return x + y;
     }
 
     public String helloFromJava() {
-
+        Log.e("helloFromJava", "C 调用了我-->helloFromJava");
         return "hello from java";
     }
 
@@ -54,13 +63,13 @@ public class CGetJavaActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sample_text:
-               callBackAdd();
+                callBackAdd();
                 break;
             case R.id.sample_text1:
-
+                callBackHelloFromJava();
                 break;
             case R.id.sample_text2:
-
+                callBackStaticSayHello();
                 break;
         }
     }

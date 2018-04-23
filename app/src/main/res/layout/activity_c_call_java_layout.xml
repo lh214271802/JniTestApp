@@ -11,7 +11,7 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:padding="33dp"
-        android:text="Hello World!add" />
+        android:text="C调Java!add" />
 
     <TextView
         android:id="@+id/sample_text1"
@@ -20,7 +20,7 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:padding="33dp"
-        android:text="Hello World!add" />
+        android:text="C调Java!hello" />
 
     <TextView
         android:id="@+id/sample_text2"
@@ -29,5 +29,5 @@
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:padding="33dp"
-        android:text="Hello World!add" />
+        android:text="调静态方法!hello" />
 </LinearLayout>
