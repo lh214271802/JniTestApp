@@ -30,4 +30,13 @@
         android:gravity="center"
         android:padding="33dp"
         android:text="调静态方法!hello" />
+
+    <TextView
+        android:id="@+id/sample_text3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:padding="33dp"
+        android:text="C调java更新UI" />
 </LinearLayout>

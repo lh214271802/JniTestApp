@@ -5,6 +5,11 @@
 
 extern "C" JNIEXPORT jstring
 
+/**
+ * 方法中的第一个参数JNIEnv为JNINativeInterface的指针，其内定义了Android和c交互需要的一系列字段；
+ * 第二个参数jobject是当前调用此方法的对象的实例（谁调用此方法谁就是此实例）
+ *
+ */
 JNICALL
 Java_com_lh_jnitestapp_MainActivity_stringFromJNI(
         JNIEnv *env,
@@ -50,8 +55,7 @@ Java_com_lh_jnitestapp_CGetJavaActivity_callBackAdd(JNIEnv *env, jobject instanc
     jclass pJclass = env->FindClass("com/lh/jnitestapp/CGetJavaActivity");
     //第三个参数是方法签名--->cmd运行：javap -s 字节码对应的类，显示方法签名
     jmethodID pJmethodID = env->GetMethodID(pJclass, "add", "(II)I");
-    jobject pJobject = env->AllocObject(pJclass);
-    jint intMethod = env->CallIntMethod(pJobject, pJmethodID, 99, 35);
+    jint intMethod = env->CallIntMethod(instance, pJmethodID, 99, 35);
     __android_log_print(ANDROID_LOG_ERROR, "native_lib", "callBackAdd-->得到值%d", intMethod);
 }extern "C"
 JNIEXPORT void JNICALL
@@ -59,8 +63,7 @@ Java_com_lh_jnitestapp_CGetJavaActivity_callBackHelloFromJava(JNIEnv *env, jobje
     jclass pJclass = env->FindClass("com/lh/jnitestapp/CGetJavaActivity");
     //  第三个参数是方法签名--->cmd运行：javap -s 字节码对应的类，显示方法签名
     jmethodID pJmethodID = env->GetMethodID(pJclass, "helloFromJava", "()Ljava/lang/String;");
-    jobject pJobject = env->AllocObject(pJclass);
-    jobject pJobject1 = env->CallObjectMethod(pJobject, pJmethodID, 99, 35);
+    jobject pJobject1 = env->CallObjectMethod(instance, pJmethodID, 99, 35);
     __android_log_print(ANDROID_LOG_ERROR, "native_lib", "callBackHelloFromJava-->得到值%x",
                         pJobject1);
 }extern "C"
@@ -72,4 +75,12 @@ Java_com_lh_jnitestapp_CGetJavaActivity_callBackStaticSayHello(JNIEnv *env, jobj
     jstring msg = env->NewStringUTF("I AM FROM C!!!");
     env->CallStaticVoidMethod(pJclass, pJmethodID, msg);
     __android_log_print(ANDROID_LOG_ERROR, "native_lib", "callBackStaticSayHello-->调用静态方法吧");
+}extern "C"
+JNIEXPORT void JNICALL
+Java_com_lh_jnitestapp_CGetJavaActivity_callBackShowToast(JNIEnv *env, jobject instance) {
+    jclass pJclass = env->FindClass("com/lh/jnitestapp/CGetJavaActivity");
+    //第三个参数是方法签名--->cmd运行：javap -s 字节码对应的类，显示方法签名
+    jmethodID pJmethodID = env->GetMethodID(pJclass, "showToast", "()V");
+    env->CallVoidMethod(instance, pJmethodID);
+    __android_log_print(ANDROID_LOG_ERROR, "native_lib", "callBackShowToast-->去调用java中的方法并更新UI");
 }

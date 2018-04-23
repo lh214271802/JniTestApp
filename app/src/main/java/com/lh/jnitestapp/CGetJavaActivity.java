@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * @author liaohui
@@ -18,6 +19,12 @@ import android.view.View;
  * 2.得到方法
  * 3.实例化该类(静态方法直接用该类class调用)
  * 4.调用方法（注意需要取到方法签名）
+ * <p>
+ * <p>
+ * --------》直接使用.so文件：
+ * 1.拷贝.so文件到工程main/jniLibs目录下
+ * 2.不用在build.gradle中配置
+ * 3.c代码也不用写了，原来的java文件还是可以直接可以调用原c代码
  */
 public class CGetJavaActivity extends AppCompatActivity implements View.OnClickListener {
     @Override
@@ -27,6 +34,7 @@ public class CGetJavaActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.sample_text).setOnClickListener(this);
         findViewById(R.id.sample_text1).setOnClickListener(this);
         findViewById(R.id.sample_text2).setOnClickListener(this);
+        findViewById(R.id.sample_text3).setOnClickListener(this);
     }
 
 
@@ -46,14 +54,22 @@ public class CGetJavaActivity extends AppCompatActivity implements View.OnClickL
      */
     public native void callBackStaticSayHello();
 
+    /**
+     * c代码调用java代码并更新UI，需要C代码中返回当前调用C代码的对象的实例---》即C方法中的第二个参数(jobject instance)
+     */
+    public native void callBackShowToast();
+
     public static void sayHello(String mesg) {
         Log.e("sayHello", "C 调用了静态方法sayHello----》" + mesg);
     }
 
     public int add(int x, int y) {
         Log.e("add", "C 调用了我-->" + (x + y));
-//        Toast.makeText(CGetJavaActivity.this,"C 调用了我-->"+(x+y),Toast.LENGTH_SHORT).show();
         return x + y;
+    }
+
+    public void showToast() {
+        Toast.makeText(CGetJavaActivity.this, "C 调用了我-->TOAST--->hahahahhahahahha", Toast.LENGTH_SHORT).show();
     }
 
     public String helloFromJava() {
@@ -73,6 +89,9 @@ public class CGetJavaActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.sample_text2:
                 callBackStaticSayHello();
+                break;
+            case R.id.sample_text3:
+                callBackShowToast();
                 break;
         }
     }
