@@ -10,11 +10,14 @@ import android.view.View;
  * @author liaohui
  * @date 2018/4/20
  * <p>
+ * java中的native方法编译后在（build/intermediates/classes/debug/包名+类名）中得到class文件；
+ * 可以调用javah -全类名得到c代码的头文件；
+ * 方法签名可以在cmd中用javap -s 字节码对应的类，显示方法签名
  * C调用java主要使用的是反射机制，步骤如下：
  * 1.得到字节码
  * 2.得到方法
- * 3.实例化该类
- * 4.调用方法
+ * 3.实例化该类(静态方法直接用该类class调用)
+ * 4.调用方法（注意需要取到方法签名）
  */
 public class CGetJavaActivity extends AppCompatActivity implements View.OnClickListener {
     @Override
